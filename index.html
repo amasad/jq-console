@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <script src="jquery.js"></script>
+    <script src="jqconsole-min.js"></script>
+    <style>
+      html, body {
+        background-color: #333;
+        color: white;
+        font-family: monospace;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+      }
+      .jqconsole {
+        bottom: 0;
+        left: 0;
+        margin: 0;
+        padding: 10px;
+        padding-bottom: 10px;
+        position: absolute;
+        overflow: auto;
+        right: 0;
+        top: 0;
+      }
+      .jqconsole-cursor {
+        background-color: #999;
+      }
+      .jqconsole-blurred .jqconsole-cursor {
+        background-color: #666;
+      }
+      .jqconsole-prompt {
+        color: #0d0;
+      }
+      .jqconsole-old-prompt {
+        color: #0b0;
+        font-weight: normal;
+      }
+      .jqconsole-input {
+        color: #dd0;
+      }
+      .jqconsole-old-input {
+        color: #bb0;
+        font-weight: normal;
+      }
+      .brace {
+        color: #00FFFF;
+      }
+      .paran {
+        color: #FF00FF;
+      }
+      .bracket {
+        color: #FFFF00;
+      }
+    </style>
+    <script>
+      $(function() {
+        // Creating the console.
+        var header = 'Welcome to JQConsole!\n' +
+                     'Use jqconsole.Write() to write and ' +
+                     'jqconsole.Input() to read.\n';
+        window.jqconsole = $('#console').jqconsole(header, 'JS> ');
+
+        // Abort prompt on Ctrl+Z.
+        jqconsole.RegisterShortcut('Z', function() {
+          jqconsole.AbortPrompt();
+          handler();
+        });
+        
+        jqconsole.RegisterMatching('{', '}', 'brace');
+        jqconsole.RegisterMatching('(', ')', 'paran');
+        jqconsole.RegisterMatching('[', ']', 'bracket');
+        // Handle a command.
+        var handler = function(command) {
+          if (command) {
+            try {
+              jqconsole.Write('==> ' + window.eval(command) + '\n');
+            } catch (e) {
+              jqconsole.Write('ERROR: ' + e.message + '\n');
+            }
+          }
+          jqconsole.Prompt(true, handler, function(command) {
+            // Continue line if can't compile the command.
+            try {
+              Function(command);
+            } catch (e) {
+              if (/[\[\{\(]$/.test(command)) {
+                return 1;
+              } else {
+                return 0;
+              }
+            }
+            return false;
+          });
+        };
+
+        // Initiate the first prompt.
+        handler();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="console"></div>
+  </body>
+</html>
