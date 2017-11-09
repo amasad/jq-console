@@ -1,4 +1,4 @@
-#jq-console  
+# jq-console  
   
 A jQuery terminal plugin written in CoffeeScript.  
   
@@ -12,7 +12,7 @@ queueing.
 NOTE: This info is for jq-console v2.0. For jq-console v1.0 see README-v1.md.  
   
   
-##Tested Browsers  
+## Tested Browsers  
   
 The plugin has been tested on the following browsers:  
   
@@ -22,9 +22,9 @@ The plugin has been tested on the following browsers:
 * Opera 11  
   
   
-##Getting Started  
+## Getting Started  
   
-###Echo example
+### Echo example
 
 ```css
     /* The console container element */
@@ -91,7 +91,7 @@ The plugin has been tested on the following browsers:
     </script>
 ```
   
-###Instantiating  
+### Instantiating  
 
 ```javascript
     $(div).jqconsole(welcomeString, promptLabel, continueLabel);
@@ -104,7 +104,7 @@ The plugin has been tested on the following browsers:
 * `continueLabel` is the label to be shown before the continued lines of the  
   input when using Prompt().
 
-###Configuration  
+### Configuration  
   
 There isn't much initial configuration needed, because the user must supply  
 options and callbacks with each state change. There are a few config methods  
@@ -139,7 +139,7 @@ provided to create custom shortcuts and change indentation width:
         jqconsole.SetIndentWidth(4);  
   
   
-##Usage  
+## Usage  
   
 Unlike most terminal plugins, jq-console gives you complete low-level control  
 over the execution; you have to call the appropriate methods to start input  
@@ -374,7 +374,7 @@ or output:
 
 * `jqconsole.ResetShortcuts`: Resets the shortcut configuration.
 
-##Default Key Config  
+## Default Key Config  
   
 The console responds to the followind keys and key combinations by default:  
   
@@ -399,7 +399,7 @@ The console responds to the followind keys and key combinations by default:
 * `Page Up`: Scroll console one page up.  
 * `Page Down`: Scroll console one page down.  
   
-##ANSI escape code SGR support
+## ANSI escape code SGR support
 
 jq-console implements a large subset of the ANSI escape code graphics.  
 Using the `.Write` method you could add style to the console using  
@@ -416,7 +416,7 @@ Note that the third parameter `escape` must be true which defaults to it.
 You'll need to include the `ansi.css` file for default effects or create your  
 own using the css classes from the table below.
 
-###<a href="http://en.wikipedia.org/wiki/ANSI_escape_code#graphics">SGR</a>
+### <a href="http://en.wikipedia.org/wiki/ANSI_escape_code#graphics">SGR</a>
 
 <table>
   <tr>
@@ -561,7 +561,7 @@ own using the css classes from the table below.
   </tr>
 </table>
 
-###<a href="http://en.wikipedia.org/wiki/ANSI_escape_code#Colors">Colors</a>
+### <a href="http://en.wikipedia.org/wiki/ANSI_escape_code#Colors">Colors</a>
 
 <table>
   <tr>
@@ -602,7 +602,7 @@ own using the css classes from the table below.
   </tr>
 </table>
 
-##CSS Classes  
+## CSS Classes  
   
 Several CSS classes are provided to help stylize the console:  
   
@@ -622,7 +622,7 @@ Of course, custom classes may be specified when using `jqconsole.Write()` for
 further customization.  
   
   
-##Contributors  
+## Contributors  
   
 [Max Shawabkeh](http://max99x.com/)    
 [Amjad Masad](http://twitter.com/amjad_masad)  
